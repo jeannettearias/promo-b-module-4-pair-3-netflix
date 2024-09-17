@@ -37,13 +37,10 @@ server.use(express.static('./web'));
 //endpoint
 
 server.get('/movies', (req, res) => {
-
   res.json(data);
+});
 
-})
-
-const data =
-{
+const data = {
   success: true,
   movies: [
     {
@@ -62,3 +59,4 @@ const data =
     }
   ]
 };
+
