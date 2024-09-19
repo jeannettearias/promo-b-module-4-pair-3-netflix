@@ -27,8 +27,8 @@ async function getConnection() {
       host: 'localhost',
       port: 3306,
       user: 'root',
-      password: 'Passw0rd',
-      database: 'netflixpro'
+      password: '123456',
+      database: 'netflix'
     });
 
     await conn.connect();
