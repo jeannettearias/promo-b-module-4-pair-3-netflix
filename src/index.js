@@ -9,6 +9,7 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+
 // init express aplication
 const serverPort = 4000;
 
@@ -17,15 +18,24 @@ server.listen(serverPort, () => {
 });
 
 
-//Endpoints
-server.get('/', (req, res) => {
+//Endpoints 
+server.get('/Info', (req, res) => {
   res.send('Its everything is OK!!');
 });
 
+
 async function getConnection() {
+  console.log({
+    host: process.env.DB_host,
+    port: process.env.DB_port,
+    user: process.env.DB_user,
+    password: process.env.DB_password,
+    database: process.env.DB_database,
+  })
+
   try {
     const conn = await mysql.createConnection({
-      host: process.env.DB_localhost,
+      host: process.env.DB_host,
       port: process.env.DB_port,
       user: process.env.DB_user,
       password: process.env.DB_password,
@@ -65,6 +75,8 @@ server.get('/movies', async (req, res) => {
   conn.close();
 });
 
+//STATICS SERVER
+server.use(express.static('src/public-react'));
 
 
 
