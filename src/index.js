@@ -17,21 +17,12 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
-
 //Endpoints 
 server.get('/Info', (req, res) => {
   res.send('Its everything is OK!!');
 });
 
-
 async function getConnection() {
-  console.log({
-    host: process.env.DB_host,
-    port: process.env.DB_port,
-    user: process.env.DB_user,
-    password: process.env.DB_password,
-    database: process.env.DB_database,
-  })
 
   try {
     const conn = await mysql.createConnection({
@@ -61,7 +52,7 @@ server.get('/movies', async (req, res) => {
     return;
   }
 
-  //query to BD
+  //query to DB
   const [results, columns] = await conn.query('Select * from movies;');
 
   console.log(results);
@@ -75,9 +66,9 @@ server.get('/movies', async (req, res) => {
   conn.close();
 });
 
+
+
+
 //STATICS SERVER
 server.use(express.static('src/public-react'));
-
-
-
-
+server.use(express.static('src/public-movies-images'));
